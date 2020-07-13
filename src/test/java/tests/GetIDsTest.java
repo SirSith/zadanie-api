@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import steps.GetIDsSteps;
 
+
 @RunWith(SerenityRunner.class)
 public class GetIDsTest extends BasicTestClass {
 
@@ -24,7 +25,7 @@ public class GetIDsTest extends BasicTestClass {
 
     @Test
     public void getIDsFromChildTest() {
-        getIDsSteps.getIDsFromChild(generatedAccessToken);
+        getIDsSteps.getIDsFromChild(generatedAccessToken, randomParentID);
     }
 
     @Test

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import steps.GetCategoriesByIDSteps;
 
+
 @RunWith(SerenityRunner.class)
 public class GetCategoriesByIDTest extends BasicTestClass{
 
@@ -13,7 +14,7 @@ public class GetCategoriesByIDTest extends BasicTestClass{
     GetCategoriesByIDSteps getCategoriesByIDSteps;
 
     @Test
-    public void getCategoryByID() {getCategoriesByIDSteps.getCategoryByID(generatedAccessToken);}
+    public void getCategoryByID() {getCategoriesByIDSteps.getCategoryByID(generatedAccessToken, randomParentID);}
 
     @Test
     public void getNonexistentCategoryTest() {getCategoriesByIDSteps.getNonexistentCategory(generatedAccessToken);}
