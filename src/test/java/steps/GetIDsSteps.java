@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Random;
 
 
-
 public class GetIDsSteps {
 
     private static final String getIDsURL = "https://api.allegro.pl/sale/categories";
@@ -58,7 +57,6 @@ public class GetIDsSteps {
                 .extract().response();
         String errorMsg = response.jsonPath().getString("errors.message.");
         Assert.assertEquals(errorMsg,"[Category 'test' not found]");
-
     }
 
     @Step

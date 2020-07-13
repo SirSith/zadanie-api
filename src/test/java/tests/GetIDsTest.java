@@ -28,5 +28,7 @@ public class GetIDsTest extends BasicTestClass {
     }
 
     @Test
-    public void getIDsWithNonexistentParentTest() { getIDsSteps.getIDsWithNonexistentParent(generatedAccessToken); }
+    public void getIDsWithNonexistentParentTest() {
+        getIDsSteps.getIDsWithNonexistentParent(generatedAccessToken);
+    }
 }
