@@ -80,7 +80,7 @@ public class GetIDsSteps {
                 .param("parent.id", randomParentID)
                 .when().get(getIDsURL)
                 .then()
-                .log().all()
+                .log().ifError()
                 .statusCode(200)
                 .extract().response();
         List<String> parentIDsList = response.jsonPath().getList("categories.parent.id");
