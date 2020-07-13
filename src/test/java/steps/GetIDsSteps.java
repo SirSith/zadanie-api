@@ -5,8 +5,6 @@ import io.restassured.response.Response;
 import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
 import java.util.List;
-import java.util.Random;
-
 
 
 public class GetIDsSteps {
@@ -58,23 +56,10 @@ public class GetIDsSteps {
                 .extract().response();
         String errorMsg = response.jsonPath().getString("errors.message.");
         Assert.assertEquals(errorMsg,"[Category 'test' not found]");
-
     }
 
     @Step
-    public static void getIDsFromChild (String accessToken) {
-        Response getRandomID = RestAssured
-                .given()
-                .header("Authorization","bearer" + accessToken)
-                .header("Accept","application/vnd.allegro.public.v1+json")
-                .when().get(getIDsURL)
-                .then()
-                .log().ifError()
-                .extract().response();
-        List<String> idsList = getRandomID.jsonPath().getList("categories.id");
-        Random random = new Random();
-        String randomParentID = idsList.get(random.nextInt(idsList.size()));
-
+    public static void getIDsFromChild (String accessToken, String randomParentID) {
         Response response = RestAssured
                 .given()
                 .header("Authorization","bearer " + accessToken)
@@ -82,7 +67,7 @@ public class GetIDsSteps {
                 .param("parent.id", randomParentID)
                 .when().get(getIDsURL)
                 .then()
-                .log().all()
+                .log().ifError()
                 .statusCode(200)
                 .extract().response();
         List<String> parentIDsList = response.jsonPath().getList("categories.parent.id");

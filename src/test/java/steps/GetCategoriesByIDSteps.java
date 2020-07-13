@@ -4,8 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.*;
 import net.thucydides.core.annotations.Step;
 import org.junit.Assert;
-import java.util.List;
-import java.util.Random;
 
 
 public class GetCategoriesByIDSteps {
@@ -13,19 +11,7 @@ public class GetCategoriesByIDSteps {
     private static final String getIDsURL = "https://api.allegro.pl/sale/categories";
 
     @Step
-    public static void getCategoryByID(String accessToken) {
-        Response getRandomID = RestAssured
-                .given()
-                .header("Authorization","bearer" + accessToken)
-                .header("Accept","application/vnd.allegro.public.v1+json")
-                .when().get(getIDsURL)
-                .then()
-                .log().ifError()
-                .extract().response();
-        List<String> idsList = getRandomID.jsonPath().getList("categories.id");
-        Random random = new Random();
-        String randomParentID = idsList.get(random.nextInt(idsList.size()));
-
+    public static void getCategoryByID(String accessToken, String randomParentID) {
         Response response = RestAssured
                 .given()
                 .header("Authorization", "bearer" + accessToken)
