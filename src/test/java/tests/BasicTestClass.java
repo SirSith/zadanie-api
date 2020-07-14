@@ -2,12 +2,9 @@ package tests;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
-import org.springframework.core.annotation.Order;
-
 import java.util.Base64;
 import java.util.List;
 import java.util.Random;

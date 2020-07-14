@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 public class GetCategoriesByIDSteps {
 
-    private static final String getIDsURL = "https://api.allegro.pl/sale/categories";
+    private static final String getCategoriesURL = "https://api.allegro.pl/sale/categories";
 
     @Step
     public static void getCategoryByID(String accessToken, String randomParentID) {
@@ -16,9 +16,9 @@ public class GetCategoriesByIDSteps {
                 .given()
                 .header("Authorization", "bearer" + accessToken)
                 .header("Accept","application/vnd.allegro.public.v1+json")
-                .when().get(getIDsURL + "/" + randomParentID)
+                .when().get(getCategoriesURL + "/" + randomParentID)
                 .then()
-                .log().all()
+                .log().ifError()
                 .statusCode(200)
                 .extract().response();
         String responseBody = response.getBody().asString();
@@ -42,12 +42,12 @@ public class GetCategoriesByIDSteps {
                 .given()
                 .header("Authorization", "bearer" + accessToken)
                 .header("Accept","application/vnd.allegro.public.v1+json")
-                .when().get(getIDsURL + "/test")
+                .when().get(getCategoriesURL + "/test")
                 .then()
-                .log().ifError()
                 .statusCode(404)
                 .extract().response();
-        String responseBody = response.getBody().asString();
-        Assert.assertTrue(responseBody.contains("error"));
+
+        String errorMsg = response.jsonPath().getString("errors.message.");
+        Assert.assertEquals(errorMsg,"[Category 'test' not found]");
     }
 }
