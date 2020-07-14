@@ -51,7 +51,6 @@ public class GetIDsSteps {
                 .param("parent.id","test")
                 .when().get(getIDsURL)
                 .then()
-                .log().ifError()
                 .statusCode(404)
                 .extract().response();
         String errorMsg = response.jsonPath().getString("errors.message.");

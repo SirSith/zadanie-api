@@ -14,9 +14,8 @@ public class GetCategoriesByIDTest extends BasicTestClass{
     GetCategoriesByIDSteps getCategoriesByIDSteps;
 
     @Test
-    public void getCategoryByID() {getCategoriesByIDSteps.getCategoryByID(generatedAccessToken, randomParentID);}
+    public void getCategoryByIDTest() {getCategoriesByIDSteps.getCategoryByID(generatedAccessToken, randomParentID);}
 
     @Test
     public void getNonexistentCategoryTest() {getCategoriesByIDSteps.getNonexistentCategory(generatedAccessToken);}
-
 }
